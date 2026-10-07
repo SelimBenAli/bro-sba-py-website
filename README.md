@@ -1,8 +1,16 @@
 # bro-sba-py
 
-**Turn Peewee models into a Flask backend and an admin dashboard.**
+**Start building sooner. Skip the setup grind.**
 
-`bro-sba-py` generates REST API routes, service code, and browser-based admin pages from your existing Peewee models. Add authentication, live Socket.IO updates, audit history, migrations, and API documentation when your project needs them.
+`bro-sba-py` is a Python project generator that scaffolds a small-to-medium Flask application from Peewee model files. It creates backend services, REST API routes, and a browser-based admin dashboard, so you can spend less time wiring the basics and more time building the parts that make your app yours.
+
+Peewee is the model input supported by the current generator. You do not need to be a Peewee expert or an experienced project architect to get started: the generated code is yours to inspect, learn from, and customize.
+
+## Who is it for?
+
+- **Students** who want to explore how a complete project is organized and learn from a working starting point.
+- **Newer developers** who want a clear structure for their backend instead of beginning with an empty folder.
+- **Experienced developers and teams** who want to skip repetitive CRUD, service, and admin setup.
 
 > bro-sba-py is under active development. Start with a demo project and review generated code and configuration before using it with real data.
 
@@ -23,7 +31,7 @@ Run them from your application folder, where your `models/` directory lives.
 
 ## Quick start
 
-You need Python 3.9 or newer and Peewee model files in `models/`. Generate the dashboard first, then generate the backend into the same output directory:
+You need Python 3.9 or newer and Peewee model files in `models/`. You can start with the [downloadable model examples](https://bro-py.selimbenali.me/downloads/model-examples.zip). Generate the dashboard first, then generate the backend into the same output directory:
 
 ```console
 bro-py-admin --models-dir ./models --output-dir ./generated
@@ -135,6 +143,9 @@ Use `--dry-run` to preview changes before regenerating an existing project. File
 
 ## Links
 
+- [Documentation](https://bro-py.selimbenali.me/)
+- [Download example models](https://bro-py.selimbenali.me/downloads/model-examples.zip)
+- [GitHub repository](https://github.com/selimbenali/bro-sba-py)
 - [Package on PyPI](https://pypi.org/project/bro-sba-py/)
 - [Peewee documentation](https://docs.peewee-orm.com/)
 - [Socket.IO documentation](https://flask-socketio.readthedocs.io/)
@@ -142,4 +153,3 @@ Use `--dry-run` to preview changes before regenerating an existing project. File
 ## Author and license
 
 Maintained by **selimbenali**. Licensed under the MIT License.
-"# bro-sba-py" 

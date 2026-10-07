@@ -3,20 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Learn how to use bro-sba-py, the Python CLI that turns Peewee models into a Flask REST API and admin dashboard. Explore setup, authentication, Socket.IO, plugins, and examples.">
+  <meta name="author" content="Selim Benali">
+  <meta name="description" content="Start a Python project faster with bro-sba-py. Generate a structured Flask backend, REST API, and admin dashboard from your models—useful for students, new developers, and experienced teams.">
   <link rel="canonical" href="https://bro-py.selimbenali.me/">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#f7f8f5">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="bro-sba-py">
-  <meta property="og:title" content="bro-sba-py Documentation | Peewee to Flask Generator">
-  <meta property="og:description" content="Turn Peewee models into a Flask REST API and admin dashboard. Get started with bro-sba-py and explore its features.">
+  <meta property="og:title" content="bro-sba-py | Start Python Projects Faster">
+  <meta property="og:description" content="Generate a structured Flask backend, REST API, and admin dashboard from your models. Spend less time on setup and more time building.">
   <meta property="og:url" content="https://bro-py.selimbenali.me/">
   <meta property="og:locale" content="en_US">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="bro-sba-py Documentation | Peewee to Flask Generator">
-  <meta name="twitter:description" content="Turn Peewee models into a Flask REST API and admin dashboard with bro-sba-py.">
-  <title>bro-sba-py Docs: Peewee to Flask API &amp; Admin Generator</title>
+  <meta name="twitter:title" content="bro-sba-py | Start Python Projects Faster">
+  <meta name="twitter:description" content="Generate a structured Flask backend, REST API, and admin dashboard from your models. Spend less time on setup and more time building.">
+  <title>bro-sba-py | Python Project Generator</title>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -24,12 +25,23 @@
     "name": "bro-sba-py",
     "alternateName": "bro-py documentation",
     "url": "https://bro-py.selimbenali.me/",
-    "description": "Documentation for bro-sba-py, a Python CLI that generates Flask backends and admin dashboards from Peewee models.",
+    "description": "Documentation for bro-sba-py, a Python project generator that scaffolds Flask backends, REST APIs, and admin dashboards from model definitions.",
     "inLanguage": "en",
+    "creator": {
+      "@type": "Person",
+      "name": "Selim Benali",
+      "url": "https://github.com/selimbenali"
+    },
     "about": {
       "@type": "SoftwareApplication",
       "name": "bro-sba-py",
       "alternateName": "bro-py",
+      "creator": {
+        "@type": "Person",
+        "name": "Selim Benali",
+        "url": "https://github.com/selimbenali"
+      },
+      "description": "A Python CLI that saves setup time by generating a small-to-medium Flask project structure, including services, API routes, and an admin dashboard, from Peewee model files.",
       "applicationCategory": "DeveloperApplication",
       "operatingSystem": "Cross-platform",
       "url": "https://pypi.org/project/bro-sba-py/",
@@ -95,8 +107,9 @@
         <div class="article-inner">
           <div class="eyebrow"><span class="eyebrow-dot"></span> Python project generator</div>
           <section class="doc-section hero-section" id="introduction" data-title="Introduction">
-            <h1>From Peewee models<br>to a working admin app.</h1>
-            <p class="lead">Generate a Flask backend, a REST API, and an admin dashboard from the models you already have. Add authentication, live updates, and developer tools when you need them.</p>
+            <h1>Start building sooner.<br>Skip the setup grind.</h1>
+            <p class="lead">bro-sba-py turns your model definitions into a small-to-medium Flask project with services, API routes, and an admin dashboard. Its current model input is Peewee, but you don’t need to be a Peewee expert to get a useful project structure and start learning or building.</p>
+            <p class="creator-credit">Created by <a href="https://github.com/selimbenali" target="_blank" rel="noreferrer">Selim Benali</a></p>
             <div class="hero-actions">
               <a class="button button-primary" href="#getting-started">Get started <span>→</span></a>
               <a class="button button-secondary" href="https://github.com/selimbenali/bro-sba-py" target="_blank" rel="noreferrer">View on GitHub ↗</a>
@@ -106,22 +119,23 @@
               <pre><code><span class="prompt">$</span> pipx install bro-sba-py</code></pre>
             </div>
             <div class="feature-strip">
-              <div><span class="strip-icon">◈</span><b>Model-first</b><small>Reads Peewee models</small></div>
-              <div><span class="strip-icon">⌘</span><b>Two commands</b><small>Backend + admin UI</small></div>
-              <div><span class="strip-icon">◉</span><b>Live by choice</b><small>Socket.IO when enabled</small></div>
+              <div><span class="strip-icon">◈</span><b>Start from your models</b><small>Keep your data definitions</small></div>
+              <div><span class="strip-icon">⌘</span><b>Get a project structure</b><small>Backend + admin UI</small></div>
+              <div><span class="strip-icon">◉</span><b>Save setup time</b><small>Focus on your app</small></div>
             </div>
           </section>
 
           <section class="doc-section" id="why" data-title="Why bro-sba-py?">
             <div class="section-kicker">OVERVIEW</div>
             <h2>Why bro-sba-py?</h2>
-            <p>Starting a data-driven app often means repeating the same setup: API routes, service functions, admin tables, forms, and configuration. bro-sba-py generates that foundation from your Peewee models, so you can spend more time on the behavior that makes your application yours.</p>
+            <p>Every new application needs structure before its unique features can take shape. bro-sba-py creates that starting foundation—services, API routes, admin pages, and configuration—from your model definitions. The generated code is yours to inspect, learn from, and change.</p>
             <div class="callout callout-info"><span>✦</span><p><b>Your code stays yours.</b> The generator runs locally. It reads model files as syntax instead of importing them, so scanning models does not start your app or connect to its database.</p></div>
             <div class="card-grid three">
-              <article class="info-card"><span class="card-icon lavender">⌁</span><h3>Start with your models</h3><p>Keep your Peewee model definitions as the source of truth for generated resources.</p></article>
-              <article class="info-card"><span class="card-icon mint">▤</span><h3>Get a usable admin</h3><p>Search, sort, paginate, edit, and export records through a browser-based dashboard.</p></article>
-              <article class="info-card"><span class="card-icon peach">◉</span><h3>Choose your features</h3><p>Turn on auth, real-time events, audit history, API docs, tests, and migrations as needed.</p></article>
+              <article class="info-card"><span class="card-icon lavender">⌁</span><h3>For students</h3><p>Learn how a real project fits together using a generated structure you can explore and customize.</p></article>
+              <article class="info-card"><span class="card-icon mint">▤</span><h3>For newer developers</h3><p>Get a clear starting point for your backend instead of facing an empty folder and wiring every layer alone.</p></article>
+              <article class="info-card"><span class="card-icon peach">◉</span><h3>For experienced developers</h3><p>Skip repetitive CRUD and admin setup, then spend your time on the features that make your app different.</p></article>
             </div>
+            <p>The current generator workflow reads Peewee model files. Peewee is the input format; the goal is to save time by generating a useful Flask project foundation around your data.</p>
           </section>
 
           <section class="doc-section" id="getting-started" data-title="Getting started">
@@ -311,7 +325,7 @@ publish_task_status(<span class="syntax-string">"catalog-sync"</span>, <span cla
             <div class="callout callout-info"><span>→</span><p>Ready to try it? Go back to <a href="#getting-started">Getting started</a> or run <code>bro-py --help</code> in your terminal.</p></div>
           </section>
 
-          <footer class="article-footer"><div><span class="footer-label">BRO-SBA-PY</span><p>Generated Flask backends and admin dashboards from Peewee models.</p></div><div class="footer-links"><a href="https://github.com/selimbenali/bro-sba-py" target="_blank" rel="noreferrer">GitHub ↗</a><a href="https://pypi.org/project/bro-sba-py/" target="_blank" rel="noreferrer">PyPI ↗</a><a href="#introduction">Back to top ↑</a></div></footer>
+          <footer class="article-footer"><div><span class="footer-label">BRO-SBA-PY</span><p>Created by <a href="https://github.com/selimbenali" target="_blank" rel="noreferrer">Selim Benali</a>. Generated Flask backends and admin dashboards from Peewee models.</p></div><div class="footer-links"><a href="https://github.com/selimbenali/bro-sba-py" target="_blank" rel="noreferrer">GitHub ↗</a><a href="https://pypi.org/project/bro-sba-py/" target="_blank" rel="noreferrer">PyPI ↗</a><a href="#introduction">Back to top ↑</a></div></footer>
         </div>
       </main>
 
