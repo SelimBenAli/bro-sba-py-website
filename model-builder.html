@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Build Peewee model files for bro-sba-py with a visual model builder. Configure fields, API rules, admin settings, authentication, and custom actions.">
+  <title>Model Builder · bro-sba-py</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="model-builder.css">
+  <script src="model-builder.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="bro-sba-py documentation home"><span class="brand-mark">b<span>·</span></span><span>bro-sba-py <small>MODEL BUILDER</small></span></a>
+    <div class="top-actions"><span class="local-note"><span class="status-dot"></span> Runs in your browser</span><a class="docs-link" href="index.html#models">Documentation ↗</a></div>
+  </header>
+
+  <main class="builder-page">
+    <section class="page-heading">
+      <div class="eyebrow"><span class="eyebrow-dot"></span> Visual model builder</div>
+      <h1>Build your model.<br><span>Get the Python file.</span></h1>
+      <p>Create Peewee model definitions and the bro-sba-py configuration methods with form controls. Watch the Python output update as you configure fields, APIs, admin behavior, and actions.</p>
+    </section>
+
+    <div class="workspace">
+      <section class="builder-controls" aria-label="Model configuration">
+        <section class="panel model-panel">
+          <div class="panel-heading"><div><span class="step-label">01 · MODEL</span><h2>Project and model</h2></div><span class="panel-icon">◇</span></div>
+          <div class="form-grid two">
+            <label>Model class name<input id="class-name" value="Task" autocomplete="off" placeholder="e.g. TaskItem"></label>
+            <label>Python file name<input id="module-name" value="task" autocomplete="off" placeholder="task"></label>
+          </div>
+          <label>Database import line<input id="db-import" value="from extensions import db" spellcheck="false"></label>
+          <p class="field-hint">The generated model uses the existing <code>db</code> object from your project. Change this import if yours lives elsewhere.</p>
+          <div class="template-actions"><span>Need a starting point?</span><button class="text-button" data-template="task">Task</button><button class="text-button" data-template="product">Product</button><button class="text-button" data-template="user">User</button></div>
+        </section>
+
+        <section class="panel fields-panel">
+          <div class="panel-heading"><div><span class="step-label">02 · DATA</span><h2>Fields</h2></div><button class="button button-primary" id="add-field">＋ Add field</button></div>
+          <p class="section-intro">Define each Peewee field, then choose how bro-sba-py should use it when generating forms, search, and admin tables.</p>
+          <div id="field-list" class="field-list"></div>
+        </section>
+
+        <details class="panel settings-panel" open>
+          <summary><span><span class="step-label">03 · ADMIN</span><strong>Admin dashboard and permissions</strong></span><span class="summary-caret">⌄</span></summary>
+          <div class="details-content">
+            <div class="form-grid two">
+              <label>Menu label<input id="menu-label" value="Tasks" autocomplete="off"></label>
+              <label class="checkline"><input type="checkbox" id="show-in-menu" checked><span>Show this model in the admin menu</span></label>
+            </div>
+            <fieldset><legend>Admin operations</legend><div class="inline-checks"><label class="checkline"><input type="checkbox" data-admin-action="create" checked><span>Create</span></label><label class="checkline"><input type="checkbox" data-admin-action="update" checked><span>Update</span></label><label class="checkline"><input type="checkbox" data-admin-action="delete" checked><span>Delete</span></label></div></fieldset>
+            <p class="field-hint">Optional role lists protect API operations when authentication is enabled. Leave blank to use the project’s default access rules.</p>
+            <div class="form-grid two role-grid">
+              <label>Read roles<input data-permission="read" placeholder="admin, moderator"></label>
+              <label>Create roles<input data-permission="create" placeholder="admin"></label>
+              <label>Update roles<input data-permission="update" placeholder="admin"></label>
+              <label>Delete roles<input data-permission="delete" placeholder="admin"></label>
+            </div>
+          </div>
+        </details>
+
+        <details class="panel settings-panel">
+          <summary><span><span class="step-label">04 · AUTH</span><strong>Authentication configuration</strong></span><span class="summary-caret">⌄</span></summary>
+          <div class="details-content">
+            <label class="checkline feature-switch"><input type="checkbox" id="enable-auth"><span>Include <code>auth_config()</code> for this model</span></label>
+            <p class="field-hint">Enable this on the model you want to use for project authentication. Also select the matching fields below.</p>
+            <div id="auth-fields" class="form-grid two is-disabled" aria-disabled="true">
+              <label>Username field<input data-auth="username_field" value="email"></label>
+              <label>Password field<input data-auth="password_field" value="password"></label>
+              <label>Role field<input data-auth="role_field" value="role"></label>
+              <label>Default role<input data-auth="default_role" value="user"></label>
+              <label>Roles allowed at signup<input data-auth-list="signup_allowed_roles" value="user" placeholder="user"></label>
+              <label>Admin dashboard roles<input data-auth-list="admin_dashboard_roles" value="admin" placeholder="admin"></label>
+              <label>Email verification<select data-auth="email_verification"><option value="none">None</option><option value="signup" selected>At signup</option><option value="login">At login</option><option value="both">Signup and login</option></select></label>
+              <label>Verified field<input data-auth="verified_field" value="is_verified"></label>
+              <label>Default redirect<input data-auth="default_redirect" value="/dashboard"></label>
+              <label>Role redirects<input data-auth-redirects placeholder="admin:/dashboard-admin, user:/dashboard-user"></label>
+            </div>
+            <label class="checkline" id="signup-toggle-wrap"><input type="checkbox" id="signup-enabled" checked disabled><span>Allow public sign-up</span></label>
+          </div>
+        </details>
+
+        <section class="panel actions-panel">
+          <div class="panel-heading"><div><span class="step-label">05 · WORKFLOW</span><h2>Custom actions</h2></div><button class="button button-secondary" id="add-action">＋ Add action</button></div>
+          <p class="section-intro">Add an API action, generate a supported operation, or create a stub for your own business logic.</p>
+          <div id="action-list" class="action-list"></div>
+        </section>
+
+        <details class="panel settings-panel">
+          <summary><span><span class="step-label">06 · ADVANCED</span><strong>Custom Python methods</strong></span><span class="summary-caret">⌄</span></summary>
+          <div class="details-content">
+            <label>Additional methods<textarea id="custom-methods" rows="7" spellcheck="false" placeholder="@classmethod&#10;def display_name(cls):&#10;    return cls.__name__"></textarea></label>
+            <p class="field-hint">Optional Python code added inside the model class. The generator’s built-in settings are created above; this area is for methods specific to your app.</p>
+          </div>
+        </details>
+      </section>
+
+      <aside class="preview-panel" aria-label="Generated Python preview">
+        <div class="preview-header"><div><div class="preview-kicker"><span class="step-label">LIVE PREVIEW</span><button class="clear-draft-btn" id="clear-draft" type="button" title="Clear saved draft" aria-label="Clear saved draft"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 4.5h10M6 4.5V3h4v1.5m2.5 0-.6 8.2a1 1 0 0 1-1 .9H5.1a1 1 0 0 1-1-.9l-.6-8.2M6.5 7v4m3-4v4"/></svg><span>Clear draft</span></button></div><h2 id="preview-filename">task.py</h2></div><span class="python-badge">PY</span></div>
+        <div id="validation-message" class="validation-message" role="status" aria-live="polite"></div>
+        <textarea id="python-output" readonly spellcheck="false" aria-label="Generated Python model code"></textarea>
+        <div class="preview-actions"><button class="button button-secondary" id="copy-model">Copy code</button><button class="button button-primary" id="download-model">Download .py</button></div>
+        <p class="preview-note"><span id="draft-status" role="status" aria-live="polite">Draft saves automatically in this browser.</span> Generated locally; nothing is uploaded. Review the file and make sure imports match your app before using it.</p>
+      </aside>
+    </div>
+
+    <footer class="builder-footer"><a href="index.html">← Back to bro-sba-py documentation</a><span>Created by Selim Benali · Open source · MIT</span></footer>
+  </main>
+</body>
+</html>
