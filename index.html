@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Guides and reference for bro-sba-py, the Peewee-to-Flask backend and admin generator.">
+  <title>Documentation · bro-sba-py</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="site-shell">
+    <header class="topbar">
+      <button class="mobile-menu icon-button" id="menu-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+      <a class="brand" href="#introduction" aria-label="bro-sba-py documentation home">
+        <span class="brand-mark">b<span>·</span></span>
+        <span>bro-sba-py <small>DOCS</small></span>
+      </a>
+      <label class="search-wrap" for="docs-search">
+        <span class="search-icon" aria-hidden="true">⌕</span>
+        <input id="docs-search" type="search" placeholder="Search documentation…" autocomplete="off">
+        <kbd>Ctrl K</kbd>
+      </label>
+      <div class="top-actions">
+        <a class="github-link" href="https://github.com/selimbenali/bro-sba-py" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+        <button class="icon-button theme-toggle" id="theme-toggle" aria-label="Switch color theme" title="Switch color theme">◐</button>
+      </div>
+    </header>
+
+    <div class="docs-layout">
+      <aside class="sidebar" id="sidebar" aria-label="Documentation navigation">
+        <nav class="side-nav">
+          <a class="nav-link active" href="#introduction">Introduction</a>
+          <a class="nav-link" href="#getting-started">Getting started</a>
+          <a class="nav-link" href="#quickstart">Your first project</a>
+          <div class="nav-group">Core concepts</div>
+          <a class="nav-link" href="#models">Model configuration</a>
+          <a class="nav-link" href="#api">Generated API</a>
+          <a class="nav-link" href="#custom-actions">Custom actions</a>
+          <a class="nav-link" href="#admin">Admin dashboard</a>
+          <div class="nav-group">Features</div>
+          <a class="nav-link" href="#database">Database setup</a>
+          <a class="nav-link" href="#authentication">Authentication</a>
+          <a class="nav-link" href="#realtime">Live updates &amp; Socket.IO</a>
+          <a class="nav-link" href="#audit">Audit history</a>
+          <a class="nav-link" href="#uploads">File uploads</a>
+          <a class="nav-link" href="#tooling">Docs, tests &amp; migrations</a>
+          <div class="nav-group">Customization</div>
+          <a class="nav-link" href="#templates">Templates</a>
+          <a class="nav-link" href="#plugins">Plugins</a>
+          <a class="nav-link" href="#cli">CLI reference</a>
+          <a class="nav-link" href="#deployment">Deployment notes</a>
+        </nav>
+        <div class="sidebar-footer">
+          <span class="status-dot"></span> Open source · MIT
+          <span class="version-label">Package: <code>bro-sba-py</code></span>
+        </div>
+      </aside>
+
+      <main class="article" id="article">
+        <div class="article-inner">
+          <div class="eyebrow"><span class="eyebrow-dot"></span> Python project generator</div>
+          <section class="doc-section hero-section" id="introduction" data-title="Introduction">
+            <h1>From Peewee models<br>to a working admin app.</h1>
+            <p class="lead">Generate a Flask backend, a REST API, and an admin dashboard from the models you already have. Add authentication, live updates, and developer tools when you need them.</p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#getting-started">Get started <span>→</span></a>
+              <a class="button button-secondary" href="https://github.com/selimbenali/bro-sba-py" target="_blank" rel="noreferrer">View on GitHub ↗</a>
+            </div>
+            <div class="terminal-card">
+              <div class="terminal-top"><span class="terminal-dots"><i></i><i></i><i></i></span><span>Terminal</span><button class="copy-button" data-copy="pipx install bro-sba-py">Copy</button></div>
+              <pre><code><span class="prompt">$</span> pipx install bro-sba-py</code></pre>
+            </div>
+            <div class="feature-strip">
+              <div><span class="strip-icon">◈</span><b>Model-first</b><small>Reads Peewee models</small></div>
+              <div><span class="strip-icon">⌘</span><b>Two commands</b><small>Backend + admin UI</small></div>
+              <div><span class="strip-icon">◉</span><b>Live by choice</b><small>Socket.IO when enabled</small></div>
+            </div>
+          </section>
+
+          <section class="doc-section" id="why" data-title="Why bro-sba-py?">
+            <div class="section-kicker">OVERVIEW</div>
+            <h2>Why bro-sba-py?</h2>
+            <p>Starting a data-driven app often means repeating the same setup: API routes, service functions, admin tables, forms, and configuration. bro-sba-py generates that foundation from your Peewee models, so you can spend more time on the behavior that makes your application yours.</p>
+            <div class="callout callout-info"><span>✦</span><p><b>Your code stays yours.</b> The generator runs locally. It reads model files as syntax instead of importing them, so scanning models does not start your app or connect to its database.</p></div>
+            <div class="card-grid three">
+              <article class="info-card"><span class="card-icon lavender">⌁</span><h3>Start with your models</h3><p>Keep your Peewee model definitions as the source of truth for generated resources.</p></article>
+              <article class="info-card"><span class="card-icon mint">▤</span><h3>Get a usable admin</h3><p>Search, sort, paginate, edit, and export records through a browser-based dashboard.</p></article>
+              <article class="info-card"><span class="card-icon peach">◉</span><h3>Choose your features</h3><p>Turn on auth, real-time events, audit history, API docs, tests, and migrations as needed.</p></article>
+            </div>
+          </section>
+
+          <section class="doc-section" id="getting-started" data-title="Getting started">
+            <div class="section-kicker">START HERE</div>
+            <h2>Getting started</h2>
+            <p>Install the package in an isolated command-line environment. <code>pipx</code> keeps the generator's dependencies separate from the Python packages in your app.</p>
+            <div class="code-card"><div class="code-head"><span>Install the CLI</span><button class="copy-button" data-copy="pipx install bro-sba-py">Copy</button></div><pre><code>pipx install bro-sba-py</code></pre></div>
+            <p>This installs two commands:</p>
+            <ul class="clean-list"><li><code>bro-py</code> generates the Flask backend.</li><li><code>bro-py-admin</code> generates the browser-based admin interface.</li></ul>
+            <div class="callout callout-warn"><span>!</span><p>Run the commands from your own project folder—the folder that contains your <code>models/</code> directory. The generated project includes code for your application; the generator package is an installable Python distribution.</p></div>
+          </section>
+
+          <section class="doc-section" id="quickstart" data-title="Your first project">
+            <div class="section-kicker">A FIRST RUN</div>
+            <h2>Your first project</h2>
+            <p>Generate the admin pages, then generate the backend into the same output folder. If you leave setup options out, the interactive terminal asks you to choose them.</p>
+            <div class="code-card"><div class="code-head"><span>1 · Generate the admin UI</span><button class="copy-button" data-copy="bro-py-admin --models-dir ./models --output-dir ./generated">Copy</button></div><pre><code>bro-py-admin --models-dir ./models --output-dir ./generated</code></pre></div>
+            <div class="code-card"><div class="code-head"><span>2 · Generate the backend</span><button class="copy-button" data-copy="bro-py --models-dir ./models --output-dir ./generated">Copy</button></div><pre><code>bro-py --models-dir ./models --output-dir ./generated</code></pre></div>
+            <p>Install the generated dependencies and start the app:</p>
+            <div class="code-card"><div class="code-head"><span>3 · Install and run</span><button class="copy-button" data-copy="python -m pip install -r requirements.txt&#10;python app.py">Copy</button></div><pre><code>python -m pip install -r requirements.txt
+python app.py</code></pre></div>
+            <p>Open <a href="http://127.0.0.1:5000/admin/" target="_blank" rel="noreferrer">http://127.0.0.1:5000/admin/</a> in your browser. On first setup, answer the database and feature questions in the terminal.</p>
+          </section>
+
+          <section class="doc-section" id="models" data-title="Model configuration">
+            <div class="section-kicker">CORE CONCEPTS</div>
+            <h2>Configure what each model exposes</h2>
+            <p>Peewee fields describe your data. Optional class methods tell the generator which fields can be written, searched, displayed, protected, or turned into custom actions.</p>
+            <div class="code-card"><div class="code-head"><span>models/user.py</span><button class="copy-button" data-copy="class User(Model):&#10;    name = CharField()&#10;    email = CharField()&#10;    password = CharField()&#10;&#10;    @classmethod&#10;    def insert_fields(cls):&#10;        return {&#10;            'name': {'required': True, 'type': str},&#10;            'email': {'required': True, 'type': str},&#10;        }&#10;&#10;    @classmethod&#10;    def search_fields(cls):&#10;        return ['name', 'email']&#10;&#10;    @classmethod&#10;    def sensitive_fields(cls):&#10;        return ['password']">Copy</button></div><pre><code><span class="syntax-key">class</span> User(Model):
+    name = CharField()
+    email = CharField()
+    password = CharField()
+
+    <span class="syntax-key">@classmethod</span>
+    <span class="syntax-key">def</span> insert_fields(cls):
+        <span class="syntax-key">return</span> {
+            <span class="syntax-string">"name"</span>: {<span class="syntax-string">"required"</span>: True, <span class="syntax-string">"type"</span>: str},
+            <span class="syntax-string">"email"</span>: {<span class="syntax-string">"required"</span>: True, <span class="syntax-string">"type"</span>: str},
+        }
+
+    <span class="syntax-key">@classmethod</span>
+    <span class="syntax-key">def</span> search_fields(cls):
+        <span class="syntax-key">return</span> [<span class="syntax-string">"name"</span>, <span class="syntax-string">"email"</span>]
+
+    <span class="syntax-key">@classmethod</span>
+    <span class="syntax-key">def</span> sensitive_fields(cls):
+        <span class="syntax-key">return</span> [<span class="syntax-string">"password"</span>]</code></pre></div>
+            <div class="table-wrap"><table><thead><tr><th>Model method</th><th>What it configures</th></tr></thead><tbody>
+              <tr><td><code>insert_fields()</code> / <code>update_fields()</code></td><td>Accepted form fields, required values, and field types.</td></tr>
+              <tr><td><code>search_fields()</code></td><td>Fields searched by the generated API and admin search box.</td></tr>
+              <tr><td><code>sensitive_fields()</code></td><td>Values such as passwords that must be protected from normal JSON output.</td></tr>
+              <tr><td><code>admin_config()</code></td><td>Admin menu label, columns, visible actions, and role permissions.</td></tr>
+              <tr><td><code>auth_config()</code></td><td>Authentication settings for the project's selected user model.</td></tr>
+              <tr><td><code>custom_actions()</code></td><td>Operations that go beyond standard create, read, update, and delete.</td></tr>
+            </tbody></table></div>
+          </section>
+
+          <section class="doc-section" id="api" data-title="Generated API">
+            <div class="section-kicker">CORE CONCEPTS</div><h2>A REST API, generated per model</h2>
+            <p>For each model, the backend creates endpoints for listing, creating, reading, updating, deleting, and searching records. List endpoints include pagination and sorting.</p>
+            <div class="code-card"><div class="code-head"><span>Example request</span><button class="copy-button" data-copy="GET /api/users?page=2&amp;per_page=20&amp;sort=name&amp;order=desc">Copy</button></div><pre><code>GET /api/users?page=2&amp;per_page=20&amp;sort=name&amp;order=desc</code></pre></div>
+            <p>Generated view functions call service functions for model operations. This keeps the HTTP layer separate from the generated data-handling layer.</p>
+          </section>
+
+          <section class="doc-section" id="custom-actions" data-title="Custom actions">
+            <div class="section-kicker">CORE CONCEPTS</div><h2>Add actions for your app's workflow</h2>
+            <p>Use <code>custom_actions()</code> to describe operations that are specific to your application, such as approving an invoice or freezing an account. An action can be a route stub for your own code, generated from supported declarative logic, or kept internal without an API route.</p>
+            <div class="code-card"><div class="code-head"><span>models/user.py</span><button class="copy-button" data-copy="@classmethod&#10;def custom_actions(cls):&#10;    return {&#10;        'freeze': {&#10;            'method': 'PATCH',&#10;            'label': 'Freeze account',&#10;            'confirm': True,&#10;        },&#10;    }">Copy</button></div><pre><code><span class="syntax-key">@classmethod</span>
+<span class="syntax-key">def</span> custom_actions(cls):
+    <span class="syntax-key">return</span> {
+        <span class="syntax-string">"freeze"</span>: {
+            <span class="syntax-string">"method"</span>: <span class="syntax-string">"PATCH"</span>,
+            <span class="syntax-string">"label"</span>: <span class="syntax-string">"Freeze account"</span>,
+            <span class="syntax-string">"confirm"</span>: True,
+        },
+    }</code></pre></div>
+            <p>Generated custom-code markers preserve supported hand-written logic during regeneration. Always preview changes before using <code>--force</code>.</p>
+          </section>
+
+          <section class="doc-section" id="admin" data-title="Admin dashboard">
+            <div class="section-kicker">CORE CONCEPTS</div><h2>A dashboard for everyday data work</h2>
+            <p>The frontend generator creates the admin pages, styles, browser JavaScript, and Flask blueprint. Generated tables support search, sorting, and pagination; forms follow the fields configured on each model.</p>
+            <div class="card-grid two">
+              <article class="info-card"><span class="card-icon mint">▦</span><h3>Work with records</h3><p>Use forms, select related records, upload supported files, and run actions from model pages.</p></article>
+              <article class="info-card"><span class="card-icon lavender">⇩</span><h3>Manage groups</h3><p>Depending on generated options, select rows for bulk deletion or updates and import/export CSV data.</p></article>
+            </div>
+          </section>
+
+          <section class="doc-section" id="database" data-title="Database setup">
+            <div class="section-kicker">FEATURES</div><h2>Choose SQLite or MySQL</h2>
+            <p>In an interactive terminal, the generator asks which engine to use if you did not specify one. SQLite is a good choice for a local demo; MySQL connects to a database server.</p>
+            <div class="card-grid two">
+              <article class="info-card"><h3>SQLite</h3><p>Provide a file path, such as <code>app.sqlite</code>. The application creates the database file as it connects and creates tables.</p><div class="code-inline">--database-engine sqlite</div></article>
+              <article class="info-card"><h3>MySQL</h3><p>Provide the database name, host, port, username, and password. Host defaults to <code>localhost</code>; port defaults to <code>3306</code>. The database must already exist.</p><div class="code-inline">--database-engine mysql</div></article>
+            </div>
+            <div class="callout callout-warn"><span>!</span><p>Credentials are saved in the generated <code>.env</code>. Keep that file private. Use <code>.env.example</code> when sharing placeholder configuration.</p></div>
+          </section>
+
+          <section class="doc-section" id="authentication" data-title="Authentication">
+            <div class="section-kicker">FEATURES</div><h2>Protect the admin and API</h2>
+            <p>Enable <code>--auth</code> and define <code>auth_config()</code> on the model selected for authentication. The generated flow can include admin login, signup, email verification, JWT API authentication, role restrictions, CSRF protection for dashboard changes, and rate limiting for sensitive endpoints.</p>
+            <p>Configure SMTP settings to send verification email. In local development, the generated configuration can provide a console fallback. Use <code>admin_config()</code> to define which roles may read, create, update, delete, or run selected actions.</p>
+            <div class="callout callout-info"><span>i</span><p>Review the generated security configuration and role rules before exposing an app to real users. The README and <code>SECURITY_AND_LIMITS.md</code> in your generated project contain environment-specific setup notes.</p></div>
+          </section>
+
+          <section class="doc-section" id="realtime" data-title="Live updates and Socket.IO">
+            <div class="section-kicker">FEATURES · REAL TIME</div><h2>Keep the admin dashboard in sync</h2>
+            <p>Enable <code>--socketio</code> in both generators. The backend publishes record events and operational status; the admin frontend receives them over Socket.IO without requiring a manual refresh.</p>
+            <div class="card-grid two">
+              <article class="info-card"><span class="card-icon mint">↗</span><h3>Live record updates</h3><p>Generated create, update, and delete routes emit dashboard events so connected admin pages know when records change.</p></article>
+              <article class="info-card"><span class="card-icon peach">◉</span><h3>Live notifications</h3><p>The dashboard can surface notifications about actions and changes as they happen for connected admins.</p></article>
+              <article class="info-card"><span class="card-icon lavender">⌁</span><h3>Operational status</h3><p>The status panel shows Socket.IO connection state, app and database status, and the number of connected admin clients.</p></article>
+              <article class="info-card"><span class="card-icon blue">◷</span><h3>Task progress</h3><p>Send queued, running, completed, or failed updates from your own background jobs.</p></article>
+            </div>
+            <div class="code-card"><div class="code-head"><span>Publish background task progress</span><button class="copy-button" data-copy="from extensions import publish_task_status&#10;&#10;publish_task_status('catalog-sync', 'running', 'Checking products')&#10;# Run your background work here&#10;publish_task_status('catalog-sync', 'completed', 'Sync finished')">Copy</button></div><pre><code><span class="syntax-key">from</span> extensions <span class="syntax-key">import</span> publish_task_status
+
+publish_task_status(<span class="syntax-string">"catalog-sync"</span>, <span class="syntax-string">"running"</span>, <span class="syntax-string">"Checking products"</span>)
+<span class="syntax-comment"># Run your background work here</span>
+publish_task_status(<span class="syntax-string">"catalog-sync"</span>, <span class="syntax-string">"completed"</span>, <span class="syntax-string">"Sync finished"</span>)</code></pre></div>
+            <p>Task status is held in process memory, so it is temporary and is not shared across multiple workers. For a multi-worker Socket.IO deployment, configure <code>SOCKETIO_MESSAGE_QUEUE</code> with Redis and set up sticky sessions at your host.</p>
+          </section>
+
+          <section class="doc-section" id="audit" data-title="Audit history">
+            <div class="section-kicker">FEATURES</div><h2>See what changed</h2>
+            <p>Enable <code>--audit-log</code> in both generators to record successful create, update, delete, and exposed custom-action calls. The generated admin home can display recent entries, including the actor when one is available. The API endpoint is <code>/api/audit-logs</code>.</p>
+          </section>
+
+          <section class="doc-section" id="uploads" data-title="File uploads">
+            <div class="section-kicker">FEATURES</div><h2>Accept files and images</h2>
+            <p>Configure a model's insert or update field with a file or image type. The generated backend can save uploads and expose them under <code>/uploads/</code>; the admin form provides a file picker and can show image thumbnails.</p>
+            <div class="callout callout-warn"><span>!</span><p>For production, review allowed file types, upload size limits, storage permissions, access rules, and backup policy for your deployment.</p></div>
+          </section>
+
+          <section class="doc-section" id="tooling" data-title="Docs, tests and migrations">
+            <div class="section-kicker">FEATURES</div><h2>Built-in developer tools</h2>
+            <div class="table-wrap"><table><thead><tr><th>Option</th><th>Generated output</th><th>How you use it</th></tr></thead><tbody>
+              <tr><td><code>--docs</code></td><td>OpenAPI description and Swagger UI.</td><td>Open <code>/api/docs</code> after starting the app.</td></tr>
+              <tr><td><code>--tests</code></td><td>pytest configuration and API tests.</td><td>Install the test dependencies, then run <code>pytest</code> in the generated folder.</td></tr>
+              <tr><td><code>--migrations</code></td><td><code>manage.py</code> commands for Peewee migrations.</td><td>Run <code>python manage.py makemigration initial</code>, then <code>python manage.py migrate</code>.</td></tr>
+              <tr><td><code>--sync-db</code></td><td>Runs migration sync after generation.</td><td>Use with <code>--migrations</code> and an available database.</td></tr>
+            </tbody></table></div>
+            <div class="callout callout-info"><span>i</span><p><code>--tests</code> creates test files; it does not run them automatically. Use one consistent schema-management workflow once you start managing production migrations.</p></div>
+          </section>
+
+          <section class="doc-section" id="templates" data-title="Templates">
+            <div class="section-kicker">CUSTOMIZATION</div><h2>Make generated files your own</h2>
+            <p>Pass <code>--templates-dir</code> with a directory that mirrors a supported template path. The generator uses your file instead of the built-in fallback for that template.</p>
+            <div class="code-card"><div class="code-head"><span>Use a custom template folder</span><button class="copy-button" data-copy="bro-py-admin --models-dir ./models --output-dir ./generated --templates-dir ./my-templates">Copy</button></div><pre><code>bro-py-admin --models-dir ./models --output-dir ./generated --templates-dir ./my-templates</code></pre></div>
+            <p>Supported overrides include admin Jinja templates, frontend CSS and JavaScript, and backend service/view templates. Preserve required generator replacement fields in backend templates.</p>
+          </section>
+
+          <section class="doc-section" id="plugins" data-title="Plugins">
+            <div class="section-kicker">CUSTOMIZATION</div><h2>Generate extra project files with plugins</h2>
+            <p>A plugin is a Python file with a <code>generate_files(context)</code> function. It receives the parsed models, output directory, and command options, then returns output paths mapped to text content.</p>
+            <div class="code-card"><div class="code-head"><span>plugins/model_index.py</span><button class="copy-button" data-copy="def generate_files(context):&#10;    names = [model['class_name'] for model in context['models']]&#10;    return {'MODEL_INDEX.md': '# Models\\n' + '\\n'.join(names)}">Copy</button></div><pre><code><span class="syntax-key">def</span> generate_files(context):
+    names = [model[<span class="syntax-string">"class_name"</span>] <span class="syntax-key">for</span> model <span class="syntax-key">in</span> context[<span class="syntax-string">"models"</span>]]
+    <span class="syntax-key">return</span> {<span class="syntax-string">"MODEL_INDEX.md"</span>: <span class="syntax-string">"# Models\n"</span> + <span class="syntax-string">"\n"</span>.join(names)}</code></pre></div>
+            <div class="code-card"><div class="code-head"><span>Load the plugin</span><button class="copy-button" data-copy="bro-py --models-dir ./models --output-dir ./generated --plugin ./plugins/model_index.py">Copy</button></div><pre><code>bro-py --models-dir ./models --output-dir ./generated --plugin ./plugins/model_index.py</code></pre></div>
+            <p>You can repeat <code>--plugin</code> to load more than one. Plugins execute Python code on your machine with your user permissions; only use plugins you trust. A dry run previews changes but does not execute plugins.</p>
+          </section>
+
+          <section class="doc-section" id="cli" data-title="CLI reference">
+            <div class="section-kicker">REFERENCE</div><h2>Common command options</h2>
+            <div class="table-wrap"><table><thead><tr><th>Option</th><th>Purpose</th></tr></thead><tbody>
+              <tr><td><code>--models-dir PATH</code></td><td>Folder with the Peewee model source files.</td></tr>
+              <tr><td><code>--output-dir PATH</code></td><td>Destination for generated application files.</td></tr>
+              <tr><td><code>--database-engine sqlite|mysql</code></td><td>Set the database engine directly instead of answering the prompt.</td></tr>
+              <tr><td><code>--auth</code></td><td>Enable generated authentication features.</td></tr>
+              <tr><td><code>--socketio</code></td><td>Enable live dashboard updates, notifications, status, and task events.</td></tr>
+              <tr><td><code>--audit-log</code></td><td>Enable audit history generation.</td></tr>
+              <tr><td><code>--tests</code>, <code>--docs</code>, <code>--migrations</code></td><td>Generate the corresponding development tools.</td></tr>
+              <tr><td><code>--sync-db</code></td><td>Run the generated migration sync after generation.</td></tr>
+              <tr><td><code>--templates-dir PATH</code></td><td>Provide template overrides.</td></tr>
+              <tr><td><code>--plugin PATH</code></td><td>Load a trusted file-generation plugin; repeatable.</td></tr>
+              <tr><td><code>--dry-run</code></td><td>Preview generated changes without writing output or running plugins.</td></tr>
+              <tr><td><code>--force</code></td><td>Allow replacing generated files.</td></tr>
+              <tr><td><code>--non-interactive</code></td><td>Skip terminal prompts for scripts and automation.</td></tr>
+            </tbody></table></div>
+            <p>Run <code>bro-py --help</code> or <code>bro-py-admin --help</code> to see all options available in your installed version. Explicit positive or negative feature flags let you skip individual interactive questions.</p>
+          </section>
+
+          <section class="doc-section" id="deployment" data-title="Deployment notes">
+            <div class="section-kicker">BEFORE PRODUCTION</div><h2>Review the generated application</h2>
+            <p>The generated README, dependency files, <code>.env.example</code>, Dockerfile, and WSGI entry point provide a starting point. They are not a substitute for checking your hosting environment.</p>
+            <ul class="clean-list"><li>Keep <code>.env</code> and real secrets out of version control.</li><li>Set production secret keys, HTTPS, database access, and logging.</li><li>Review authentication rules, custom actions, uploaded file handling, and generated code.</li><li>For multi-worker Socket.IO, configure Redis messaging and sticky sessions.</li><li>Read the project's <code>SECURITY_AND_LIMITS.md</code> before deploying.</li></ul>
+            <div class="callout callout-info"><span>→</span><p>Ready to try it? Go back to <a href="#getting-started">Getting started</a> or run <code>bro-py --help</code> in your terminal.</p></div>
+          </section>
+
+          <footer class="article-footer"><div><span class="footer-label">BRO-SBA-PY</span><p>Generated Flask backends and admin dashboards from Peewee models.</p></div><div class="footer-links"><a href="https://github.com/selimbenali/bro-sba-py" target="_blank" rel="noreferrer">GitHub ↗</a><a href="https://pypi.org/project/bro-sba-py/" target="_blank" rel="noreferrer">PyPI ↗</a><a href="#introduction">Back to top ↑</a></div></footer>
+        </div>
+      </main>
+
+      <aside class="toc" aria-label="On this page"><div class="toc-title">ON THIS PAGE</div><a href="#why">Why bro-sba-py?</a><a href="#getting-started">Getting started</a><a href="#quickstart">Your first project</a><a href="#models">Model configuration</a><a href="#realtime">Live updates &amp; Socket.IO</a><a href="#deployment">Deployment notes</a><div class="toc-note">Built for your next Python project.<br><a href="https://github.com/selimbenali/bro-sba-py" target="_blank" rel="noreferrer">Contribute on GitHub ↗</a></div></aside>
+    </div>
+    <div class="search-overlay" id="search-overlay" aria-hidden="true"><div class="search-dialog"><div class="dialog-search"><span>⌕</span><input id="overlay-search" type="search" placeholder="Search docs..." autocomplete="off"><kbd>ESC</kbd></div><div id="search-results" class="search-results"><div class="search-hint">Type to search documentation</div></div></div></div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
